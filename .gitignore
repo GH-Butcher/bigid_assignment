@@ -1,8 +1,8 @@
 .DS_Store
-**/node_modules
 .idea
 pizza_express
 **/.terraform/
 **/prod.plan
 **/terraform.tfstate
 **/terraform.tfstate.backup
+/pizza-express/node_modules/
