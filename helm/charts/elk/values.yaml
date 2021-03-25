@@ -1,0 +1,23 @@
+elasticsearch:
+  replicaCount: 1
+  name: elasticsearch
+  container:
+    image: elasticsearch:7.11.2
+    env:
+      discovery.type: single-node
+    client:
+      port: 9200
+    nodes:
+      port: 9300
+kibana:
+  replicaCount: 1
+  name: kibana
+  serviceName: kibana-cluster-ip-service
+  service:
+    spec:
+      type: ClusterIP
+  container:
+    image: kibana:7.11.2
+    containerPort:
+      port: 5601
+      name: webinterface

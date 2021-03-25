@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pizza-express-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: pizza-express
+  template:
+    metadata:
+      labels:
+        component: pizza-express
+    spec:
+      containers:
+        - name: pizza-express
+          image: gbutchers/pizza-express
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REDIS_HOST
+              value: redis-cluster-ip-service
+            - name: REDIS_PORT
+              value: '6379'
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pizza-express-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: pizza-express
+  ports:
+    - port: 3000
+      targetPort: 3000

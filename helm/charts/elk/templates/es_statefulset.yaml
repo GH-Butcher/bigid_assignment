@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.elasticsearch.name }}
+spec:
+  serviceName: {{ .Values.elasticsearch.name }}
+  replicas: {{ .Values.elasticsearch.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.elasticsearch.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.elasticsearch.name }}
+    spec:
+      containers:
+        - name: {{ .Values.elasticsearch.name }}
+          image: {{ .Values.elasticsearch.container.image }}
+          env:
+           {{- range $k, $v := .Values.elasticsearch.container.env }}
+             - name: {{ $k }}
+               value: {{ $v }}
+           {{ end }}
+          ports:
+            - containerPort: {{ .Values.elasticsearch.container.client.port }}
+              name: client
+            - containerPort: {{ .Values.elasticsearch.container.nodes.port }}
+              name: nodes
+
+

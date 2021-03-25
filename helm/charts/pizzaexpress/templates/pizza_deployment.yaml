@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.pizza_express.name }}
+spec:
+  replicas: {{ .Values.pizza_express.replicaCount }}
+  selector:
+    matchLabels:
+      component: {{ .Values.pizza_express.name }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Values.pizza_express.name }}
+    spec:
+      containers:
+        - name: {{ .Values.pizza_express.name }}
+          image: {{ .Values.pizza_express.container.image }}
+          env:
+            {{- range $k, $v := .Values.pizza_express.container.env }}
+            - name: {{ $k }}
+              value: {{ $v | quote }}
+            {{ end }}
+          ports:
+            - containerPort: {{ .Values.pizza_express.container.containerPort.port }}

@@ -1,0 +1,14 @@
+pizza_express:
+  replicaCount: 2
+  name: pizza-express
+  serviceName: pizza-express-cluster-ip-service
+  service:
+    spec:
+      type: ClusterIP
+  container:
+    image: gbutchers/pizza-express
+    env:
+      REDIS_HOST: redis-cluster-ip-service
+      REDIS_PORT: 6379
+    containerPort:
+      port: 3000

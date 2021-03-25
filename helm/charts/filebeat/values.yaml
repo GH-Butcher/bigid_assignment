@@ -1,0 +1,4 @@
+filebeat:
+  elasticsearch:
+    host: elasticsearch.default
+    port: 9200

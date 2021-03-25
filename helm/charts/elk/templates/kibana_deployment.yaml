@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.kibana.name }}
+  labels:
+    app: {{ .Values.kibana.name }}
+spec:
+  replicas: {{ .Values.kibana.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.kibana.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.kibana.name }}
+    spec:
+      containers:
+        - name: {{ .Values.kibana.name }}
+          image: {{ .Values.kibana.container.image }}
+          ports:
+            - containerPort: {{ .Values.kibana.container.containerPort.port }}
+              name: {{ .Values.kibana.container.containerPort.name }}

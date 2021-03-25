@@ -1,0 +1,14 @@
+ingress:
+  name: ingress-service
+  pizza_express:
+    host: pizza-express.com
+    backend:
+      service:
+        name: pizza-express-cluster-ip-service
+        port: 3000
+  kibana:
+    host: pizza-kibana.com
+    backend:
+      service:
+        name: kibana-cluster-ip-service
+        port: 5601

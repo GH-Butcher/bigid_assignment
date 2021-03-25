@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+  local:
+    push: false #--> Don't push to the Docker Hub
+  artifacts:
+    - image: gbutchers/pizza-express
+      context: pizza-express
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
+            dest: .

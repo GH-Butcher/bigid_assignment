@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.pizza_express.serviceName }}
+spec:
+  type: {{ .Values.pizza_express.service.spec.type }}
+  selector:
+    component: {{ .Values.pizza_express.name }}
+  ports:
+    - port: {{ .Values.pizza_express.container.containerPort.port }}
+      targetPort: {{ .Values.pizza_express.container.containerPort.port }}

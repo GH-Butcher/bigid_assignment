@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.redis.name }}
+spec:
+  replicas: {{ .Values.redis.replicaCount }}
+  selector:
+    matchLabels:
+      component: {{ .Values.redis.name }}
+  template:
+    metadata:
+      labels:
+        component: {{ .Values.redis.name }}
+    spec:
+      containers:
+        - name: {{ .Values.redis.name }}
+          image: {{ .Values.redis.container.image }}
+          ports:
+            - containerPort: {{ .Values.redis.container.containerPort.port }}
