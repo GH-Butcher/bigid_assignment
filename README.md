@@ -16,7 +16,7 @@ Usage examples:
 ```shell
 #--> create/update
 /test/build.sh false
-#--> destroy
+#--> destroy -> not required in this case
 /test/build.sh true
 ```
 `2. infra stage: create Ingress Controller, Ingress Resource, ELK stack, Redis and Filebeat`
@@ -30,7 +30,7 @@ Usage examples:
 ```shell
 #--> create/update
 /test/deploy_pizza.sh false
-#--> destroy -> not required in this case
+#--> destroy
 /test/deploy_pizza.sh true
 ```
 
