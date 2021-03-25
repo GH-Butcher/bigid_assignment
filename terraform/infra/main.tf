@@ -70,5 +70,8 @@ module "elk" {
 //---> Deploy Filebeat - kubernetes logs harvester
 module "filebeat" {
   source = "../modules/minikube/filebeat"
+  providers = {
+    helm = helm.infra_helm
+  }
   helm_repository = "../../helm/charts"
 }
