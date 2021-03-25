@@ -1,7 +1,7 @@
 # BigID Home assignment
 The project consist of 3 stages:
 
-`Stage 1:  Build, Test, Push to the Docker repo an artifact`
+`Stage 1:  Build, Test, Push to the Docker Hub an artifact`
 
 `Stage 2:  Deploy infra: Ingress Controller, Ingress Resource, ELK stack, Redis and Filebeat`
 
