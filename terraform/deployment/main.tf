@@ -26,4 +26,5 @@ module "deploy_application" {
     helm = helm.infra_helm
   }
   helm_repository = "../../helm/charts"
+  depends_on = [null_resource.copy_minikube_config]
 }
