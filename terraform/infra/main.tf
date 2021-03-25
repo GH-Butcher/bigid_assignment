@@ -38,10 +38,10 @@ provider "helm" {
 
 //--> Deploy Ingress Controller and Ingress Resource
 module "ingress_nginx" {
+  source = "../modules/minikube/ingress"
   providers = {
     helm = helm.infra_helm
   }
-  source = "../modules/minikube/ingress"
   kube_config = local.kube_config
   helm_repository = "../../helm/charts"
 
